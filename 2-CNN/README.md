@@ -8,7 +8,24 @@ In the context of CNNs, III represents a section of the input image, and KKK is 
 ![Alt text](image.png)
 
 
+In order to build a basic CNN in this section the following funcitons are crucial:
 
+    
+  `torch.nn.Conv2d`: PyTorch’s implementation of convolutional layers.
+
+  
+  `torch.nn.Linear`: Fully connected layers.
+
+  `torch.nn.MaxPool2d`: Applies 2D max-pooling to reduce the spatial dimensions of the input volume.
+
+  
+  `torch.nn.ReLU`: Our ReLU function.
+
+  
+  `torch.nn.LogSoftmax`: Used when building our softmax classifier to return the predicted probabilities of each class.
+
+  
+  `torch.nn.flatten`: Flattens the output of a multi-dimensional volume (e.g., a CONV or POOL layer) such that we can apply fully connected layers to it.
 
 
 ### The Seminal LeNet Architecture
@@ -17,6 +34,7 @@ The Convolutional Neural Network (CNN) we are implementing here with PyTorch is 
 
 
 CONV⇒RELU⇒POOL)×2⇒FC⇒RELU⇒FC⇒SOFTMAX
+
 
 ### Implementing Simple CNN with PyTorch
 
@@ -58,15 +76,89 @@ Building a deep Convolutional Neural Network (CNN) requires a combination of arc
 
 ### Layer Arrangement
 
-1.  **Convolutional Layers**: These are the foundational layers in a CNN. They perform a convolution operation on the input data using filters or kernels to extract features. In a CNN, the input is typically a tensor with shape: (number of inputs) × (input height) × (input width) × (input channels). After passing through a convolutional layer, the image becomes abstracted to a feature map.
+The ordering of layers in a Convolutional Neural Network (CNN) can have a significant impact on the performance and training dynamics of the model. Let's discuss the two proposed schemes:
+
+#### Scheme 1:
+
+CONV/FC→ReLU (or other activation)→Dropout→BatchNorm→CONV/F
+
+##### Explanation:
+
+1.  **CONV/FC**: The convolutional (CONV) or fully connected (FC) layer is where the primary computation happens. It involves applying filters to the input data (in the case of CONV) or connecting every neuron to every other neuron (in the case of FC).
     
-2.  **Pooling Layers**: These layers reduce the dimensions of data by combining the outputs of neuron clusters in one layer into a single neuron in the next layer. There are two common types of pooling: max and average. Max pooling uses the maximum value of each local cluster of neurons in the feature map, while average pooling takes the average value.
+2.  **ReLU (or other activation)**: Activation functions introduce non-linearity into the model. ReLU (Rectified Linear Unit) is the most commonly used activation function in CNNs due to its simplicity and effectiveness.
     
-3.  **Fully Connected Layers**: These layers connect every neuron in one layer to every neuron in another layer, similar to a traditional multilayer perceptron neural network (MLP). The flattened matrix from the previous layers goes through a fully connected layer to classify the images.
+3.  **Dropout**: Dropout is a regularization technique where randomly selected neurons are ignored during training, helping to prevent overfitting.
     
-4.  **Normalization Layers**: These layers are used to normalize the activations of the neurons, which can accelerate the training process and improve generalization.
+4.  **BatchNorm**: Batch normalization normalizes the activations of the neurons, which can accelerate the training process and improve generalization. By placing it after dropout, we ensure that the normalization is not affected by the randomness of dropout.
+    
+5.  **CONV/FC**: Another convolutional or fully connected layer follows, continuing the pattern.
     
 
+#### Scheme 2:
+
+CONV/FC→BatchNorm→ReLU (or other activation)→Dropout→CONV/FC
+##### Explanation:
+
+1.  **CONV/FC**: Similar to Scheme 1, this is where the primary computation happens.
+    
+2.  **BatchNorm**: Here, batch normalization is applied immediately after the convolutional or fully connected layer. This ensures that the data fed into the activation function is normalized.
+    
+3.  **ReLU (or other activation)**: The activation function is applied after normalization.
+    
+4.  **Dropout**: Dropout is applied after the activation, serving as a regularization technique.
+    
+5.  **CONV/FC**: Another convolutional or fully connected layer follows.
+    
+
+#### Which Scheme to Use?
+
+The choice between Scheme 1 and Scheme 2 often depends on empirical results and the specific problem at hand. However, Scheme 2 is more commonly adopted in recent deep learning practices. The rationale is that by normalizing immediately after the convolutional or fully connected layer, the data fed into the activation function is more consistent, leading to more stable training dynamics. Additionally, applying dropout after the activation function can be more effective as it drops the activated features.
+
+In practice, it's beneficial to experiment with both schemes and observe which one offers better performance for your specific task.
+    
+Here's a simple implementation of the sequence `CONV/FC → BatchNorm → ReLU (or other activation) → Dropout → CONV/FC` in PyTorch:
+
+```python
+import torch.nn as nn
+
+class SimpleCNN(nn.Module):
+    def __init__(self, input_channels, num_classes):
+        super(SimpleCNN, self).__init__()
+
+        # First sequence: CONV -> BatchNorm -> ReLU -> Dropout
+        self.conv1 = nn.Conv2d(in_channels=input_channels, out_channels=32, kernel_size=3, stride=1, padding=1)
+        self.bn1 = nn.BatchNorm2d(32)
+        self.relu1 = nn.ReLU()
+        self.dropout1 = nn.Dropout(0.5)
+
+        # Second sequence: CONV
+        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)
+
+        # Fully Connected layer (FC)
+        self.fc = nn.Linear(64 * 28 * 28, num_classes)  # Assuming input image size is 28x28
+
+    def forward(self, x):
+        # First sequence
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = self.relu1(x)
+        x = self.dropout1(x)
+
+        # Second sequence
+        x = self.conv2(x)
+
+        # Flatten and pass through FC
+        x = x.view(x.size(0), -1)
+        x = self.fc(x)
+
+        return x
+
+# Instantiate the model
+model = SimpleCNN(input_channels=1, num_classes=10)
+print(model)
+```
+If a larger model is used, it is better to stick to the widely used mode archietctures and backbones that are already available such as existing Resnet based architectures or U-net base dones depending on the application. These architectures have already optimized and it is not necessary to search for another optimal layer arrangements.
 ### Advanced Techniques
 
 1.  **Attention Mechanisms (computationally expensive)**: Attention mechanisms are a critical component in many state-of-the-art models, especially in the context of sequence-to-sequence tasks like machine translation, text summarization, and image captioning. The primary idea behind attention is to allow the model to focus on specific parts of the input when producing an output.
@@ -126,21 +218,21 @@ In a typical sequence-to-sequence model with attention:
 This is a basic form of attention called "soft attention". There are other forms like "hard attention" and more sophisticated mechanisms like "multi-head attention" used in models like the Transformer. The above code provides a foundation to understand the core concept.
 2.  **Skip Connections (or Residual Connections)**: These are shortcuts or connections that skip one or more layers. They were introduced to solve the vanishing gradient problem in very deep networks. The idea is to add the output of a layer to the output of a layer a few steps further down the network. This can be easily implemented in PyTorch using the `nn.Sequential` and `nn.Module` classes.
     
-    ```python
-    class ResidualBlock(nn.Module):
-        def __init__(self, in_channels, out_channels, stride=1):
-            super(ResidualBlock, self).__init__()
-            self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1)
-            self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1)
-            self.skip = nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=stride)
-    
-        def forward(self, x):
-            residual = x
-            x = F.relu(self.conv1(x))
-            x = self.conv2(x)
-            x += self.skip(residual)
-            return F.relu(x)
-    
-    ```
+```python
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, stride=1):
+        super(ResidualBlock, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1)
+        self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1)
+        self.skip = nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=stride)
+
+    def forward(self, x):
+        residual = x
+        x = F.relu(self.conv1(x))
+        x = self.conv2(x)
+        x += self.skip(residual)
+        return F.relu(x)
+
+```
     
 3.  **Dilated Convolutions**: These are used to increase the receptive field of a neuron without increasing the number of parameters. They introduce gaps in the kernel, allowing it to cover a larger area of the input.
