@@ -121,7 +121,6 @@ Here's a simple implementation of the sequence `CONV/FC → BatchNorm → ReLU (
 
 ```python
 import torch.nn as nn
-
 class SimpleCNN(nn.Module):
     def __init__(self, input_channels, num_classes):
         super(SimpleCNN, self).__init__()
