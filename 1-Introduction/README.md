@@ -123,7 +123,7 @@ Alternatively avoid training large models from sratch, this will be adressed in 
 -   PyTorch Tensors are similar in behavior to NumPy’s arrays.
     
 
-```
+```python
 import torch
 
 a = torch.Tensor([[1, 2], [3, 4]])
@@ -139,7 +139,7 @@ print(a**2)    # Prints a torch.FloatTensor of size 2x2
 
 -   Note that `torch.tensor()` infers the datatype `dtype` automatically, while `torch.Tensor()` always returns a `torch.FloatTensor`.
 
-```
+```python
 import torch
 
 # Creating a IntTensor
@@ -159,14 +159,14 @@ print(a.dtype) # Prints torch.float32
 
 -   `torch.tensor()` supports the `dtype` argument, if you would like to change the type while defining the tensor. Put simply, a tensor of specific data type can be constructed by passing a `torch.dtype` to the constructor or tensor creation op:
 
-```
+```python
 torch.zeros([2, 4], dtype=torch.int32)                # Prints tensor([[ 0,  0,  0,  0],
                                                       #                [ 0,  0,  0,  0]], dtype=torch.int32)
 ```
 
 -   Similarly, you can pass in a `torch.device` argument to the constructor:
 
-```
+```python
 cuda0 = torch.device('cuda:0')
 torch.ones([2, 4], dtype=torch.float64, device=cuda0) # Prints tensor([[ 1.0000,  1.0000,  1.0000,  1.0000],
                                                       #                [ 1.0000,  1.0000,  1.0000,  1.0000]], dtype=torch.float64, device='cuda:0')
@@ -176,7 +176,7 @@ torch.ones([2, 4], dtype=torch.float64, device=cuda0) # Prints tensor([[ 1.0000,
 
 -   With PyTorch, the default float datatype is `float32` (single precision), while that with NumPy is `float64` (double precision). However, the default int datatype for both PyTorch and NumPy is `int64`. You may also change default floating point `dtype` to be `torch.float64` while defining the tensor:
 
-```
+```python
 import torch
 
 torch.set_default_dtype(torch.float64)
@@ -196,7 +196,7 @@ print(a.dtype) # Prints torch.float64
 
 -   You may also change the tensor’s datatype after the tensor is defined:
 
-```
+```python
 import torch
 
 a = torch.tensor([[1, 2], [3, 4]])
@@ -236,7 +236,7 @@ print(e.dtype) # Prints torch.int64
 
 -   PyTorch Variables allow you to wrap a Tensor and record operations performed on it. This allows you to perform automatic differentiation.
 
-```
+```python
 import torch
 from torch.autograd import Variable
 
@@ -510,8 +510,122 @@ model = TwoLayerNet(D_in, H, D_out)
 y_pred = model(x) # dim: 32 x 10
 ```
 
--   More complex models follow the same layout, and we’ll see two of them in the subsequent posts.
 
+
+## PyTorch Activation Functions
+
+Activation functions introduce non-linearity into the model, allowing it to learn from the error and make adjustments, which is essential for learning complex patterns.
+
+### 1. ReLU (Rectified Linear Unit)
+
+The function returns 0 if it receives any negative input, but for any positive value `x` it returns that value back.
+
+```
+pythonCopy codeimport torch.nn as nn
+relu = nn.ReLU()
+
+```
+
+**Formula**:
+$$ f(x) = \max(0, x) $$
+**When to Use**: ReLU is the most widely used activation function and is generally the first choice for hidden layers in feedforward neural networks and convolutional neural networks.
+    -   **Advantages**: Helps mitigate the vanishing gradient problem to some extent. Computationally efficient.
+    -   **Caveats**: Can suffer from "dying ReLU" problem where neurons can sometimes get stuck during training and stop updating.
+### 2. Leaky ReLU
+
+It allows a small gradient when the unit is not active.
+
+```
+pythonCopy codeleaky_relu = nn.LeakyReLU(negative_slope=0.01)
+
+```
+
+**Formula**:
+$$ f(x) = 
+\begin{cases} 
+x & \text{if } x > 0 \\
+\alpha x & \text{otherwise} 
+\end{cases}
+$$ 
+**When to Use**: Useful for preventing the dying ReLU problem.
+    -   **Advantages**: Allows a small gradient when the unit is not active, preventing neurons from dying.
+### 3\. Sigmoid
+
+It squashes the values between 0 and 1.
+
+```
+pythonCopy codesigmoid = nn.Sigmoid()
+
+```
+
+**Formula**: $$ f(x) = \frac{1}{1 + e^{-x}} $$
+ **When to Use**: Historically used for binary classification problems in the output layer. However, it's less common now due to the vanishing gradient problem.
+    -   **Advantages**: Maps outputs to a range between 0 and 1.
+    -   **Caveats**: Suffers from vanishing gradient problem, especially in deep networks.
+### 4\. Tanh (Hyperbolic Tangent)
+
+It squashes the values between -1 and 1.
+
+```
+pythonCopy codetanh = nn.Tanh()
+
+```
+
+**Formula**: $$ f(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} $$
+**When to Use**: Can be used in hidden layers of feedforward neural networks as an alternative to the sigmoid function.
+    -   **Advantages**: Maps outputs to a range between -1 and 1, which can be more desirable than the 0 to 1 range of the sigmoid function.
+    -   **Caveats**: Still suffers from the vanishing gradient problem, though less severely than the sigmoid function.
+### 5\. Softmax
+
+It's used for multi-class classification problems. This function returns the probabilities of each class.
+
+```
+pythonCopy codesoftmax = nn.Softmax(dim=1)
+
+```
+
+**Formula**: $$ f(x)_i = \frac{e^{x_i}}{\sum_j e^{x_j}} $$
+**When to Use**: Typically used in the output layer of a neural network for multi-class classification problems.
+    -   **Advantages**: Converts the network's output into a probability distribution over multiple classes.
+### 6\. PReLU (Parametric ReLU)
+
+It allows the negative slope to be learned.
+
+```
+pythonCopy codeprelu = nn.PReLU(num_parameters=1, init=0.25)
+
+```
+  **PReLU (Parametric ReLU)**
+    
+    -   **When to Use**: Can be used in deep networks to prevent the dying ReLU problem.
+    -   **Advantages**: Allows the negative slope to be learned, which can adaptively tune the activation function.
+### 7\. ELU (Exponential Linear Unit)
+
+It tends to converge cost to zero faster and produce more accurate results.
+
+```
+pythonCopy codeelu = nn.ELU(alpha=1.0)
+
+```
+  **When to Use**: Can be used in hidden layers as an alternative to ReLU or Leaky ReLU.
+    -   **Advantages**: Tends to converge cost to zero faster and produce more accurate results. Helps mitigate the dying ReLU problem.
+    -   **Caveats**: Computationally more expensive than ReLU and its variants due to the exponential function.
+**Formula**:
+$$ f(x) = 
+\begin{cases} 
+x & \text{if } x > 0 \\
+\alpha (e^x - 1) & \text{otherwise} 
+\end{cases}
+$$ 
+
+### 8\. SELU (Scaled Exponential Linear Unit)
+
+It's a scaled version of the ELU activation function.
+
+```
+pythonCopy codeselu = nn.SELU()
+
+```
 ## Loss Functions
 
 -   PyTorch comes with many standard loss functions available for you to use in the `torch.nn` [module](https://pytorch.org/docs/master/nn.html#loss-functions). From the documentation, here’s a gist of what PyTorch has to offer in terms of loss functions:
@@ -687,7 +801,7 @@ a.shape[2] # Prints 5
 -   `torch.nn.init.ones_()` fills the input Tensor with the scalar value 1.
 -   `torch.nn.init.constant_()` fills the input Tensor with the passed in scalar value.
 
-```
+```python
 import torch.nn as nn
 
 a = torch.empty(3, 5)
@@ -723,7 +837,7 @@ $$
 
 -   Also known as Glorot initialization.
 
-```
+```python
 import torch.nn as nn
 
 a = torch.empty(3, 5)
@@ -740,7 +854,7 @@ $$
 
 -   Also known as Glorot initialization.
 
-```
+```python
 import torch.nn as nn
 
 a = torch.empty(3, 5)
@@ -759,7 +873,7 @@ $$
 
 -   Also known as He initialization.
 
-```
+```python
 import torch.nn as nn
 
 a = torch.empty(3, 5)
@@ -776,7 +890,7 @@ $$ 
 
 -   Also known as He initialization.
 
-```
+```python
 import torch.nn as nn
 
 a = torch.empty(3, 5)
@@ -787,7 +901,7 @@ nn.init.kaiming_normal_(a, mode='fan_out', nonlinearity='relu') # Initializes a 
 
 -   To send a tensor (or model) to the GPU, you may use `tensor.cuda()` or `tensor.to(device)`:
 
-```
+```python
 import torch
 
 t = torch.tensor([1, 2, 3])
@@ -803,7 +917,7 @@ a = a.cpu()
 
 -   Note that there is no difference between the two. Early versions of PyTorch had `tensor.cuda()` and `tensor.cpu()` methods to move tensors and models from CPU to GPU and back. However, this made code writing a bit cumbersome:
 
-```
+```python
 if cuda_available:
     x = x.cuda()
     model.cuda()
@@ -814,7 +928,7 @@ else:
 
 -   Later versions of PyTorch introduced `tensor.to()` that basically takes care of everything in an elegant way:
 
-```
+```python
 device = torch.device('cuda') if cuda_available else torch.device('cpu')
 x = x.to(device)
 model = model.to(device)
@@ -824,7 +938,7 @@ model = model.to(device)
 
 -   Both in PyTorch and TensorFlow, the `tensor.numpy()` method is pretty much straightforward. It converts a tensor object into an `numpy.ndarray` object. This implicitly means that the converted tensor will be now [processed on the CPU](https://stackoverflow.com/questions/63968868/what-does-the-numpy-function-do#:~:text=the%20CPU.%20Here%27s%20a-,relevant%20docstring,-supporting%20this%20statement).
 
-```
+```python
 import torch
 
 t = torch.tensor([1, 2, 3])
@@ -840,7 +954,7 @@ type(b)                      # <class 'numpy.ndarray'>
 
 -   If you originally created a PyTorch Tensor with `requires_grad=True` (note that `requires_grad` defaults to `False`, unless wrapped in a `nn.Parameter()`), you’ll have to use `detach()` to get rid of the gradients when sending it downstream for say, post-processing with NumPy, or plotting with Matplotlib/Seaborn. Calling `detach()` before `cpu()` prevents [superfluous gradient copying](https://discuss.pytorch.org/t/should-it-really-be-necessary-to-do-var-detach-cpu-numpy/35489/5). This greatly optimizes runtime. Note that `detach()` is not necessary if `requires_grad` is set to `False` when defining the tensor.
 
-```
+```python
 import torch
 
 t = torch.tensor([1, 2, 3], requires_grad=True)
@@ -860,7 +974,7 @@ type(b)                      # <class 'numpy.ndarray'>
 -   Returns the value of a tensor as a Python int/float. This only works for tensors with one element. For other cases, see `[tolist()](#tensortolist-convert-multi-value-tensor-to-scalar)`.
 -   Note that this operation is not differentiable.
 
-```
+```python
 import torch
 
 a = torch.tensor([1.0])
@@ -874,7 +988,7 @@ a.tolist() # Prints [1.0]
 -   Returns the tensor as a (nested) list. For scalars, a standard Python number is returned, just like with `[item()](#tensoritem-convert-single-value-tensor-to-scalar)`. Tensors are automatically moved to the CPU first if necessary.
 -   Note that this operation is not differentiable.
 
-```
+```python
 a = torch.randn(2, 2)
 a.tolist()      # Prints [[0.012766935862600803, 0.5415473580360413],
                 #         [-0.08909505605697632, 0.7729271650314331]]
@@ -885,7 +999,7 @@ a[0,0].tolist() # Prints 0.012766935862600803
 
 -   `len()` returns the size of the first dimension of the input tensor, similar to NumPy.
 
-```
+```python
 import torch
 
 a = torch.Tensor([[1, 2], [3, 4]])
@@ -903,7 +1017,7 @@ len(b)   # 4
 -   Return evenly spaced values within the half-open interval $[start, stop)$ (in other words, the interval including start but excluding stop).
 -   For integer arguments the function is equivalent to the Python built-in `range` function, but returns an `tensor` rather than a list.
 
-```
+```python
 import torch
 
 print(torch.arange(8))             # Prints tensor([0 1 2 3 4 5 6 7])
@@ -921,7 +1035,7 @@ print(torch.arange(0.1, 0.5, 0.1)) # Prints tensor([0.1000, 0.2000, 0.3000, 0.40
 -   Return evenly spaced numbers calculated over the interval $[start, stop]$.
 -   Starting PyTorch 1.11, `linspace` requires the `steps` argument. Use `steps=100` to restore the previous behavior.
 
-```
+```python
 import torch
 
 print(torch.linspace(1.0, 2.0, steps=5)) # Prints tensor([1.0000, 1.2500, 1.5000, 1.7500, 2.0000])
@@ -934,7 +1048,7 @@ print(torch.linspace(1.0, 2.0, steps=5)) # Prints tensor([1.0000, 1.2500, 1.5000
     -   The new view size must be compatible with its original size and stride, i.e., each new view dimension must either be a subspace of an original dimension, or only span across original dimensions.
     -   `view()` can be only be performed on contiguous tensors (which can be ascertained using `is_contiguous()`). Otherwise, a contiguous copy of the tensor (e.g., via `contiguous()`) needs to be used. When it is unclear whether a `view()` can be performed, it is advisable to use (`reshape()`)\[#reshape\], which returns a view if the shapes are compatible, and copies the tensor (equivalent to calling contiguous()) otherwise.
 
-```
+```python
 import torch
 
 a = torch.arange(4).view(2, 2)
@@ -949,7 +1063,7 @@ print(a.view(1, 4)) # Prints tensor([[0, 1, 2, 3]])
 
 -   Passing in a `-1` to `torch.view()` returns a flattened version of the array.
 
-```
+```python
 import torch
 
 a = torch.arange(4).view(2, 2)
@@ -958,7 +1072,7 @@ print(a.view(-1)) # Prints tensor([0, 1, 2, 3])
 
 -   The view tensor shares the same underlying data storage with its base tensor. No data movement occurs when creating a view, view tensor just changes the way it interprets the same data. This avoids explicit data copy, thus allowing fast and memory efficient reshaping, slicing and element-wise operations.
 
-```
+```python
 import torch
 
 a = torch.rand(4, 4)
@@ -968,7 +1082,7 @@ a.storage().data_ptr() == b.storage().data_ptr() # Prints True since `a` and `b`
 
 -   Note that modifying the view tensor changes the input tensor as well.
 
-```
+```python
 import torch
 
 a = torch.rand(4, 4)
@@ -983,7 +1097,7 @@ print(t[0][0]) # Prints tensor(3.14)
 -   Returns a tensor that is a transposed version of input for 2D tensors. More generally, interchanges two axes of an array. In other words, the given dimensions `dim0` and `dim1` are swapped.
 -   The resulting out tensor shares its underlying storage with the input tensor, so changing the content of one would change the content of the other.
 
-```
+```python
 import torch
 
 a = torch.randn(2, 3, 5)
@@ -996,7 +1110,7 @@ a.transpose(0, -1).shape # Prints torch.Size([5, 3, 2])
 
 -   Alias for [`torch.transpose()`](https://aman.ai/primers/pytorch/#transpose). This function is equivalent to NumPy’s (`swapaxes`)\[../numpy/#swapaxes\] function.
 
-```
+```python
 import torch
 
 a = torch.randn(2, 3, 5)
@@ -1012,7 +1126,7 @@ a.swapaxes(0, -1).shape # Prints torch.Size([5, 3, 2])
 
 -   Returns a view of the input tensor with its axes ordered as indicated in the input argument.
 
-```
+```python
 import torch
 
 a = torch.randn(2, 3, 5)
@@ -1023,7 +1137,7 @@ a.permute(2, 0, 1).size() # Prints torch.Size([5, 2, 3])
 
 -   Note that (i) using `view` or `reshape` to restructure the array, and (ii) `permute` or `transpose` to swap axes, can render the same output shape but does not necessarily yield the same tensor in both cases.
 
-```
+```python
 a = torch.tensor([[1, 2, 3], [4, 5, 6]])
 
 viewed = a.view(3, 2)
@@ -1049,7 +1163,7 @@ perm           # Prints tensor([[1, 4],
 
 -   Compared to `torch.permute()` for reordering axes which needs positions of all axes to be explicitly specified, moving one axis while keeping the relative positions of all others is a common enough use-case to warrant its own syntactic sugar. This is the functionality that is offered by `torch.movedim()`.
 
-```
+```python
 import torch
 
 a = torch.randn(2, 3, 5)
@@ -1065,7 +1179,7 @@ a.moveaxis(0, -1).shape # Prints torch.Size([3, 5, 2])
 
 -   Returns a random permutation of integers from `0` to `n - 1`.
 
-```
+```python
 import torch
 
 torch.randperm(n=4) # Prints tensor([2, 1, 0, 3])
@@ -1073,7 +1187,7 @@ torch.randperm(n=4) # Prints tensor([2, 1, 0, 3])
 
 -   As a practical use-case, `torch.randperm()` helps select mini-batches containing data samples randomly as follows:
 
-```
+```python
 data[torch.randperm(data.shape[0])] # Assuming the first dimension of data is the minibatch number
 ```
 
@@ -1086,7 +1200,7 @@ $$
 \text{out}_i = \begin{cases} \text{x}_i & \text{if } \text{condition}_i \\ \text{y}_i & \text{otherwise} \\ \end{cases}
 $$
 
-```
+```python
 import torch
 
 a = torch.randn(3, 2) # Initializes a as a 3x2 matrix using the the standard normal distribution
@@ -1113,7 +1227,7 @@ tensor([[1.0779, 0.0383],
 -   Returns a tensor with the same data and number of elements as the input, but with the specified shape. When possible, the returned tensor will be a view of the input. Otherwise, it will be a copy. Contiguous inputs and inputs with compatible strides can be reshaped without copying, but you should not depend on the copying vs. viewing behavior. It means that `torch.reshape` may return a copy or a view of the original tensor.
 -   A single dimension may be `-1`, in which case it’s inferred from the remaining dimensions and the number of elements in input.
 
-```
+```python
 import torch
 
 a = torch.arange(4*10*2).view(4, 10, 2)
@@ -1135,7 +1249,7 @@ print(b.contiguous().view(-1))
 
 -   Concatenates the input sequence of tensors in the given dimension. All tensors must either have the same shape (except in the concatenating dimension) or be empty.
 
-```
+```python
 import torch
 
 x = torch.randn(2, 3)
@@ -1172,7 +1286,7 @@ print(torch.cat((x, x, x), 1)) # Prints a 2x9 matrix: [[ 0.6580, -1.0969, -0.461
 
 ![](https://aman.ai/primers/assets/pytorch/sq_unsq.png)
 
-```
+```python
 import torch
 
 a = torch.zeros(2, 1, 2, 1, 2)
@@ -1218,7 +1332,7 @@ print(b.size()) # torch.Size([4, 1])
 -   A practical use-case of `torch.unsqueeze()` is to add an additional dimension (usually the first dimension) for the batch number as shown in the example below:
     
 
-```
+```python
 import torch
 
 # 3 channels, 32 width, 32 height
@@ -1232,7 +1346,7 @@ a.unsqueeze(dim=0).shape
 
 -   Printing the model prints a summary of the model including the different **layers** involved and their **specifications**.
 
-```
+```python
 from torchvision import models
 model = models.vgg16()
 print(model)
