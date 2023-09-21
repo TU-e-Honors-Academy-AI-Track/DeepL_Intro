@@ -235,3 +235,80 @@ class ResidualBlock(nn.Module):
 ```
     
 3.  **Dilated Convolutions**: These are used to increase the receptive field of a neuron without increasing the number of parameters. They introduce gaps in the kernel, allowing it to cover a larger area of the input.
+
+### Standard Archietctures and Recent Development in the Field
+In computer vision, several deep learning architectures have been considered state-of-the-art at different points in time, and they have significantly contributed to the advancements in the field. Below are some of the standard and state-of-the-art deep learning architectures in computer vision:
+
+#### 1\. **VGGNet (2014)**
+
+-   Developed by the Visual Graphics Group from Oxford, VGGNet is known for its use of small (3x3) convolutional filters which allowed it to construct deeper models.
+-   VGG16 and VGG19 are the most popular variants, with 16 and 19 layers respectively.
+
+#### 2\. **GoogLeNet/Inception (2014)**
+
+-   Developed by researchers at Google, GoogLeNet introduced the inception module, which allowed for more efficient use of computational resources.
+-   It uses a combination of 1x1, 3x3, and 5x5 convolutions within the same module, allowing it to capture multi-level features.
+
+#### 3\. **ResNet (2015)**
+
+-   Developed by Microsoft Research, ResNet introduced residual learning, which enabled the training of very deep networks by using skip connections or shortcuts.
+-   Variants like ResNet-50, ResNet-101, and ResNet-152 are widely used, with the number indicating the depth of the network.
+
+#### 4\. **DenseNet (2016)**
+
+-   DenseNet improved upon ResNet by introducing dense blocks, where each layer receives the feature maps of all preceding layers.
+-   It is highly parameter-efficient and has improved gradient flow compared to traditional architectures.
+
+#### 5\. **MobileNet (2017)**
+
+-   Developed by Google, MobileNet is designed for mobile and edge devices.
+-   It uses depthwise separable convolutions which significantly reduce the number of parameters, making it efficient for resource-constrained devices.
+
+#### 6\. **EfficientNet (2019)**
+
+-   Also developed by Google, EfficientNet introduced a new scaling method for CNNs.
+-   It uses a compound scaling method, scaling depth, width, and resolution of the network, which results in better performance.
+
+#### 7\. **Vision Transformer (ViT) (2020)**
+
+-   ViT, developed by Google Research, applies transformers, which were initially designed for NLP tasks, to computer vision.
+-   It divides the image into fixed-size patches and processes them in parallel using transformer encoders, capturing long-range dependencies between pixels.
+
+#### 8\. **Swin Transformer (2021)**
+
+-   Developed by Microsoft Research, the Swin Transformer builds upon ViT and introduces shift windows to capture local information in images.
+-   It has achieved state-of-the-art performance on a variety of vision tasks, including image classification and object detection.
+
+#### 9\. **ConViT (2021)**
+
+-   The ConViT combines convolutional layers with transformers, aiming to leverage the advantages of both convolutional neural networks and transformers.
+-   It uses gated positional self-attention, allowing it to decide the importance of positional information dynamically.
+
+#### Applications:
+
+-   **Image Classification**: VGGNet, ResNet, MobileNet, and EfficientNet are widely used.
+-   **Object Detection and Segmentation**: Faster R-CNN with ResNet backbones, YOLO, and Mask R-CNN are popular choices.
+-   **Pose Estimation**: OpenPose and HRNet are commonly used architectures.
+-   **Image Generation**: GANs (Generative Adversarial Networks) like DCGAN, and CycleGAN are used for generating images.
+
+For more specific applications, such as diffusion-based image generation, the aforementioned architectures are not directly used. If you are looking to use diffusion models for tasks like data generation, synthesis, or other generative tasks, you would typically explore specific diffusion-based models or other generative models like GANs or VAEs, rather than the standard architectures mentioned, which are primarily used for discriminative tasks like classification, detection, and segmentation. These architectures may use the aforementioned standard architectures, such as ResNet, as a backbone but are not direct implementations.
+### Standard Diffusion Model Architectures:
+
+1.  **Denoising Diffusion Probabilistic Models (DDPM):**
+    -   DDPM is a prominent example of a diffusion model. It models the data distribution by corrupting the data sample with noise progressively until it turns into pure noise and then reverses this process to generate new samples.
+    -   It employs a denoising process, where a denoising function is learned to reverse the corruption (diffusion) process.
+
+### Connection to ResNet:
+
+-   **Residual Connections:**
+    -   Diffusion models often employ architectures with residual connections, similar to ResNet, to facilitate the training of the denoising function.
+    -   The use of residual connections helps in mitigating the vanishing gradient problem and enables the training of deeper networks, which is crucial for learning complex denoising functions.
+
+### Connection to GANs:
+
+-   **Generative Models:**
+    -   Both GANs and diffusion models are generative models, aiming to learn the data distribution and generate new samples that resemble the training data.
+    -   While the methodologies are different, the goal of synthesizing high-quality, realistic samples is a common objective.
+-   **Training Dynamics:**
+    -   GANs and diffusion models have different training dynamics. GANs involve a min-max game between a generator and a discriminator, while diffusion models involve learning a denoising function to reverse the diffusion process.
+    -   However, both models require careful tuning and training strategies to stabilize training and avoid mode collapse.
