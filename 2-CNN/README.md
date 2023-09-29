@@ -1,13 +1,25 @@
 ## Convolutional Neural Networks (CNNs)
 
-Convolutional Neural Networks (CNNs) are a category of deep neural networks designed specifically for processing structured grid data, such as images. The fundamental building block of a CNN is the convolutional layer, which performs a convolution operation. Mathematically, given an input matrix III and a kernel KKK, the convolution operation is defined as:
+Convolutional Neural Networks (CNNs) are a category of deep neural networks designed specifically for processing structured matrix data, such as images. The neurons in this case are still present but in a structured two or hgher dimensional space. Each element of such matrix then represents one neuron with learnable coefficient assigned to it. The fundamental building block of a CNN is the convolutional layer, which performs a convolution operation. Mathematically, given an input matrix I and a kernel K, the convolution operation is defined as:
 
 $$ (I \ast K)(x, y) = \sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} I(i, j) K(x-i, y-j) $$
 
-In the context of CNNs, III represents a section of the input image, and KKK is a filter or kernel. The convolution operation involves sliding the kernel over the input image and computing the sum of element-wise products.
+In the context of CNNs, I represents a section of the input image, and K is a filter or kernel. The convolution operation involves sliding the kernel over the input image and computing the sum of element-wise products.  Essentially, a convolution is the dot product of two matrices: a kernel and an image patch of identical size.
 ![Alt text](image.png)
 
+ A typical CNN comprises convolutional layers, pooling layers, and fully connected layers.
 
+ The Essence of Edge Detection
+Edge detection exemplifies convolution's capability to pinpoint areas in an image where color or intensity undergoes a sudden change. It can be vertical, detecting sharp edges in the middle of the original image, or horizontal, revealing changes from bright to dark and vice versa. Various filters can be employed, and their parameters, including size and matrix elements, can be trained by neural networks.
+
+Padding and Its Importance
+Padding addresses the reduction in image size post each convolutional layer and the potential loss of valuable information from the image's edge. It involves adding extra layers of zeros around the original image, maintaining the input image size and preventing information loss.
+
+Diving Deeper into Convolutional Layers
+Convolutional operators can be applied with different strides, affecting the number of operations and the output image size. The number of channels should align between the input image and the filter. Multiple filters can be applied to each image, and the number of parameters to be learned in each layer is independent of the input image size, resolving issues related to overfitting and computational costs.
+
+Pooling Layers: A Closer Look
+Pooling layers aim to condense the representation, retaining only significant features. They are applied similarly to convolution operators and are crucial in reducing overfitting. The most common type is Max Pooling, and it is applied to each channel individually.
 In order to build a basic CNN in this section the following funcitons are crucial:
 
     
@@ -312,3 +324,8 @@ For more specific applications, such as diffusion-based image generation, the af
 -   **Training Dynamics:**
     -   GANs and diffusion models have different training dynamics. GANs involve a min-max game between a generator and a discriminator, while diffusion models involve learning a denoising function to reverse the diffusion process.
     -   However, both models require careful tuning and training strategies to stabilize training and avoid mode collapse.
+ 
+
+## Where to go next?
+There is a great set of lectures covering recent research in the field in master degree at TU/e. The less recent bt still relevant set of lectures with sufficient knowledge for this track (Convolutional neural networks for computer vision
+5LSM0 (2021)) can be found online: [Link](http://vca.ele.tue.nl/C418-V3-Convolutional-neural-networks-for-computer-vision.html)
