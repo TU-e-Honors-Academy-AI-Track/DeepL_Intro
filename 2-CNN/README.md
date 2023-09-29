@@ -9,16 +9,20 @@ In the context of CNNs, I represents a section of the input image, and K is a fi
 
  A typical CNN comprises convolutional layers, pooling layers, and fully connected layers.
 
- The Essence of Edge Detection
-Edge detection exemplifies convolution's capability to pinpoint areas in an image where color or intensity undergoes a sudden change. It can be vertical, detecting sharp edges in the middle of the original image, or horizontal, revealing changes from bright to dark and vice versa. Various filters can be employed, and their parameters, including size and matrix elements, can be trained by neural networks.
+### How do convolutional layers learn patens in image?
+Convolutional layers are matrices that have a learnable elements and they can thus represent basically any digital image processing filter. Learning differetn processing filters enables the models to learn to detect different features of the image usuch as edges, long objects, colour changes, texture changes and much more by merely changing the digital representation of the analog filter. One such example isedge detection. Edge detection exemplifies convolution's capability to pinpoint areas in an image where color or intensity undergoes a sudden change. It can be vertical, detecting sharp edges in the middle of the original image, or horizontal, revealing changes from bright to dark and vice versa. Various filters can be employed, and their parameters, including size and matrix elements, can be trained by neural networks.
 
-Padding and Its Importance
+![](https://anhreynolds.com/blogs/cnn.html../img/edge-detection-vertical.png)
+
+An example of vertical edge detection
+
+## Padding and Its Importance
 Padding addresses the reduction in image size post each convolutional layer and the potential loss of valuable information from the image's edge. It involves adding extra layers of zeros around the original image, maintaining the input image size and preventing information loss.
 
-Diving Deeper into Convolutional Layers
+### Diving Deeper into Convolutional Layers
 Convolutional operators can be applied with different strides, affecting the number of operations and the output image size. The number of channels should align between the input image and the filter. Multiple filters can be applied to each image, and the number of parameters to be learned in each layer is independent of the input image size, resolving issues related to overfitting and computational costs.
 
-Pooling Layers: A Closer Look
+### Pooling Layers: A Closer Look
 Pooling layers aim to condense the representation, retaining only significant features. They are applied similarly to convolution operators and are crucial in reducing overfitting. The most common type is Max Pooling, and it is applied to each channel individually.
 In order to build a basic CNN in this section the following funcitons are crucial:
 
