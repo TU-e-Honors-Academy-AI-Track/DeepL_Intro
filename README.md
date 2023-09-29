@@ -38,12 +38,12 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 
 
-| Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |
-| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
-
+| Lesson Number |     Topic     | Learning objectives     |        Linked Lesson    | Author     |
+| ----------- | ---------- | ---------------------- | -------------------- | ---------- |
 |      01       |              ⚡️ Introduction to Pytorch ⚡️                |      [Introduction](1-Introduction/README.md)       | Learn the basic concepts of deep learning using Pytorch                                           |                                             ...                                             |                       Simon                       |
+|      02       |               Introduction to CNNs in Pytorch                |      [Introduction](2-CNN/README.md)       | Imlementing CNNs for computer vision in Pytorch                                           |                                             ...                                             |                       Simon                       |
+|      03       |               Q&A              |      [Introduction](3-Q&A/README.md)       |Answers to questions you might ask during the projects                                           |                                             ...                                             |                       Simon                       |
 
-|      02       |               Introduction to CNNs in Pytorch                |      [Introduction](1-CNN/README.md)       | Imlementing CNN ofr computer vision in pytorch Pytorch                                           |                                             ...                                             |                       Simon                       |
 
 
 
