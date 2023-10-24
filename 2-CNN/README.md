@@ -140,33 +140,26 @@ import torch.nn as nn
 class SimpleCNN(nn.Module):
     def __init__(self, input_channels, num_classes):
         super(SimpleCNN, self).__init__()
-
         # First sequence: CONV -> BatchNorm -> ReLU -> Dropout
         self.conv1 = nn.Conv2d(in_channels=input_channels, out_channels=32, kernel_size=3, stride=1, padding=1)
         self.bn1 = nn.BatchNorm2d(32)
         self.relu1 = nn.ReLU()
         self.dropout1 = nn.Dropout(0.5)
-
         # Second sequence: CONV
         self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)
-
         # Fully Connected layer (FC)
         self.fc = nn.Linear(64 * 28 * 28, num_classes)  # Assuming input image size is 28x28
-
     def forward(self, x):
         # First sequence
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu1(x)
         x = self.dropout1(x)
-
         # Second sequence
         x = self.conv2(x)
-
         # Flatten and pass through FC
         x = x.view(x.size(0), -1)
         x = self.fc(x)
-
         return x
 
 # Instantiate the model
