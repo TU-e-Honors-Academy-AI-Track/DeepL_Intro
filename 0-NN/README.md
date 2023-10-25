@@ -16,7 +16,11 @@ We can express parts of this network using linear algebra, the input layer is ju
 
 By doing a "forward pass" through the network, sequentially computing the values of each layer, the neural network transforms its input into an output. With the right network and weights, it should be possible to approximate any function/mapping, but the problem is, while we can easily make a sufficiently large network, how do we get the weights?
 
-The currently most common solution to this is the combination of gradient descend and backpropogation. We take an (input, output) sample from a dataset and using its input we do a forward pass through our network, then we compare the expected output with the computed output and call the distance between them the "Loss".
+The currently most common solution to this is the combination of gradient descent and backpropogation. We take an (input, output) sample from a dataset and using its input we do a forward pass through our network, then we compare the expected output with the computed output and call the distance between them the "Loss".
 
+Before we do something with the loss, lets consider gradient descent. 
+![0-NN/gradient.png](https://github.com/TU-e-Honors-Academy-AI-Track/DeepL_Intro/blob/00introtoNN/0-NN/gradient.png?raw=true)
+
+Imagine you are at the red dot in the graph and you want to reach the minimum, then one can simply follow the gradient (the derivative) to go to a minimum. While this strategy has the risk of getting stuck in a local minimum (right) instead of ending up at the global minimum (left), it works quite well, even in higher dimensions than 1 or 2. 
 
 ..... WORK IN PROGRESS
