@@ -1,4 +1,5 @@
 # Introduction to Neural Networks for beginners
+(Expected prior knowledge: basics of graphs, meaning of mapping and partial derivatives)
 Neural networks are a machine learning technique with which we intend to approximate a (possibly very complicated) function (or mapping) using some kind of graph constructed out of simple neurons. 
 
 Lets take a look at such a neuron, one which has n inputs $x_1, ..., x_n$, with corresponding weights $w_1, ..., w_n$.
