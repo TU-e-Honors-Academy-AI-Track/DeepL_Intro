@@ -1,4 +1,4 @@
-# Introduction to Neural Networks for Absolute Beginners
+# Introduction to Neural Networks for beginners
 Neural networks are a machine learning technique with which we intend to approximate a (possibly very complicated) function (or mapping) using some kind of graph constructed out of simple neurons. 
 
 Lets take a look at such a neuron, one which has n inputs $x_1, ..., x_n$, with corresponding weights $w_1, ..., w_n$.
@@ -22,5 +22,7 @@ Before we do something with the loss, lets consider gradient descent.
 ![0-NN/gradient.png](https://github.com/TU-e-Honors-Academy-AI-Track/DeepL_Intro/blob/00introtoNN/0-NN/gradient.png?raw=true)
 
 Imagine you are at the red dot in the graph and you want to reach the minimum, then one can simply follow the gradient (the derivative) to go to a minimum. While this strategy has the risk of getting stuck in a local minimum (right) instead of ending up at the global minimum (left), it works quite well, even in higher dimensions than 1 or 2. 
+
+We can use this with the partial derivative of the effect each weight/bias has on the loss to adjust them closer towards a minimum in the loss, so a neural network which performs better. The amount we move is decided by the learning rate, too little and it will take forever or too much and you will overshoot the minimums (possibly even the global). 
 
 ..... WORK IN PROGRESS
