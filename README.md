@@ -82,4 +82,3 @@ We would like to let you know that this project is open for contributions for yo
 <img src="Logo_inspiration.png" width="512" height="512" />
 
 
-## How to Contribute?
