@@ -35,14 +35,25 @@
 </head>
 
 <body>
+  
   <div id="app"></div>
   <script>
-    window.$docsify = {
-      name: 'Machine Learning for Beginners',
-      repo: 'https://github.com/Microsoft/ML-For-Beginners',
-      relativePath: true,
-      auto2top: true,
+  window.$docsify = {
+    // ... your existing $docsify configurations
+
+    // Add this hook:
+    hooks: {
+      afterEach: function(html, next) {
+        // This will queue MathJax to process the new content:
+        if (window.MathJax) {
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+
+        // Continue with Docsify's rendering process:
+        next(html);
+      }
     }
+  };
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
