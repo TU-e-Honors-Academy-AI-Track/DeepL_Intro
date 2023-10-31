@@ -14,8 +14,8 @@ This is an example of inline \\(\LaTeX\\). The following is Stokes' theorem in a
 ```
 
 $$
-\begin{pmatrix}a & b\\ c & d\end{pmatrix}
-$ \begin{pmatrix}a & b\\ c & d\end{pmatrix} $
+\begin{pmatrix}a & b\\ c & d\end{pmatrix} $$
+$\begin{pmatrix}a & b\\ c & d\end{pmatrix}$
 # Introduction to Neural Networks for beginners
 (Expected prior knowledge: basics of graphs, meaning of mapping and partial derivatives)
 
