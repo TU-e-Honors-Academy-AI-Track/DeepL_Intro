@@ -65,8 +65,8 @@
     - [Resources](#resources-2)
 - [References](#references)
 - [Citation](#citation)
-  
-[![Colab Notebook](https://aman.ai/primers/assets/colab-open.svg)](https://colab.research.google.com/github/amanchadha/aman-ai/blob/master/pytorch.ipynb)
+<!--   
+[![Colab Notebook](https://aman.ai/primers/assets/colab-open.svg)](https://colab.research.google.com/github/amanchadha/aman-ai/blob/master/pytorch.ipynb) -->
 
 
 ## Overview
