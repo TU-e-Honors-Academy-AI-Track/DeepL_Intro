@@ -1,0 +1,13 @@
+.center-div {
+    display: flex;
+    flex-direction: row;  /* Set direction to row */
+    justify-content: center; /* Horizontally center the content */
+    align-items: flex-start; /* Content starts at the top of the container */
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 0 20px 0; /* This ensures there's no top margin for the title */
+}
+

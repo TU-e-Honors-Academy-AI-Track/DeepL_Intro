@@ -55,7 +55,7 @@ This is an overview of the important dates and deadlines for the year 2023 and 2
 
 | Lesson Number |     Topic     | Learning objectives     |        Linked Lesson    | Author     |
 | ----------- | ---------- | ---------------------- | -------------------- | ---------- |
-|      00       |              Introduction lecture Deep Learning               |      [Slides](Convolutional_Neural_Networks_lecture.pdf)       | Introduction to Deep learning                                          |                                             Simon Angelos Austin                                             |                       Simon Austin Angelos                     |
+|      00       |              Introduction lecture Deep Learning               |      [Slides]({{ site.baseurl }}/Convolutional_Neural_Networks_lecture.pdf)       | Introduction to Deep learning                                          |                                             Simon Angelos Austin                                             |                       Simon Austin Angelos                     |
 |      01       |              Introduction to Neural Networks                |      [Page](1-NN/README.md)       | Understand the idea of neural networks                                           |                                             Sytze                                             |                       Sytze                       |
 |      02       |              ⚡️ Introduction to Pytorch ⚡️                |      [Page](2-Introduction/README.md)       | Learn the basic concepts of deep learning using Pytorch                                           |                                             Simon                                             |                       Simon                       |
 |      03       |               Introduction to CNNs in Pytorch                |      [Page](3-CNN/README.md)       | Imlementing CNNs for computer vision in Pytorch                                           |                                             Simon                                             |                       Simon                       |
@@ -78,7 +78,9 @@ Microsoft introductory machine learning courses available for free on GutHub. Ch
 Hello there track members! 👋
 
 We would like to let you know that this project is open for contributions for you fellow track members! The contirbution can be anythig from formatting changes to makin a fancy logo for our track (see the following to get inspired). You can contact Simon or ay other of the current contributors (see above).
-
-<img src="Logo_inspiration.png" width="512" height="512" />
-
-
+<link rel="stylesheet" href="./styles.css">
+<!-- <img src="Logo_inspiration.png" width="512" height="512" /> -->
+<figure style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 512px;">
+    <img src="Logo_inspiration.png" width="512" height="512" />
+    <figcaption style="margin-top: 10px;">Generated with DALLE 3</figcaption>
+</figure>
