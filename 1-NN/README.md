@@ -3,10 +3,8 @@
 katex: true
 ---
 This is an example of inline \\(\LaTeX\\). The following is Stokes' theorem in a
-`displaymath` environment: \\[$$\int_{\partial \Omega} \omega = \int_{\Omega} d\omega $$\\]
-{% katex %}
-c = \pm\sqrt{a^2 + b^2}
-{% endkatex %}
+`displaymath` environment:  $$\int_{\partial \Omega} \omega = \int_{\Omega} d\omega $$ 
+
 # Introduction to Neural Networks for beginners
 (Expected prior knowledge: basics of graphs, meaning of mapping and partial derivatives)
 
