@@ -10,50 +10,39 @@
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
   <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'] ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-  
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
-  </script>
-  
-  <script type="text/javascript">
-    MathJax.Hub.Queue(
-      ["resetEquationNumbers",MathJax.InputJax.TeX],
-      ["Typeset",MathJax.Hub]
-    );
-  </script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(
+    ["resetEquationNumbers",MathJax.InputJax.TeX],
+    ["Typeset",MathJax.Hub]
+  );
+</script>
 </head>
 
 <body>
-  
   <div id="app"></div>
   <script>
-  window.$docsify = {
-    // ... your existing $docsify configurations
-
-    // Add this hook:
-    hooks: {
-      afterEach: function(html, next) {
-        // This will queue MathJax to process the new content:
-        if (window.MathJax) {
-          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        }
-
-        // Continue with Docsify's rendering process:
-        next(html);
-      }
+    window.$docsify = {
+      name: 'Machine Learning for Beginners',
+      repo: 'https://github.com/Microsoft/ML-For-Beginners',
+      relativePath: true,
+      auto2top: true,
     }
-  };
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
