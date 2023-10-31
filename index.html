@@ -24,7 +24,11 @@
             repo: 'https://github.com/Microsoft/ML-For-Beginners',
             relativePath: true,
             auto2top: true,
+      // Hook to reprocess with MathJax after content is loaded
+        mounted: function() {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
+    }
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 
@@ -47,7 +51,7 @@
     <script type="text/javascript">
         MathJax.Hub.Queue(
             ["resetEquationNumbers", MathJax.InputJax.TeX],
-            ["Typeset", MathJax.Hub]
+
         );
     </script>
 </body>
