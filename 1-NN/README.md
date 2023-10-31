@@ -34,7 +34,7 @@ A neural network would consists of those neurons, commonly divided in an input l
 
 We can express parts of this network using linear algebra, the input layer is just given a vector of all inputs, lets call it **x** $= \[x_1, x_2, x_3\]$. We can then express the outcome of the second, hidden, layer as **y**. If all weights of the second layer are stored in a matrix **A**, where **A**$_{i,j}$ is the weigth between input neuron j and hidden layer neuron i (such that all weights for neuron i are in the same row), then:
  
- **y**=g(A$**x**$+b)$
+ $$**y**=g(A$**x**$+b)$$
  <!-- $`\sqrt{3x-1}+(1+x)^2`$ -->
 
 By doing a "forward pass" through the network, sequentially computing the values of each layer, the neural network transforms its input into an output. With the right network and weights, it should be possible to approximate any function/mapping, but the problem is, while we can easily make a sufficiently large network, how do we get the weights?
