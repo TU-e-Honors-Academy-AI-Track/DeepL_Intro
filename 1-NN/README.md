@@ -1,23 +1,12 @@
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [ ['$$','$$'], ["\\(","\\)"] ],
-    displayMath: [ ['$$','$$'], ["\\(","\\)"] ],
-  },
-  TeX: {
-    Macros: {
-      bra: ["\\langle{#1}|", 1],
-      ket: ["|{#1}\\rangle", 1],
-      braket: ["\\langle{#1}\\rangle", 1],
-      bk: ["\\langle{#1}|{#2}|{#3}\\rangle", 3]
-   }
- }
-});
-</script> -->
 
-<!-- <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML' async></script> -->
 ---
+katex: true
 ---
+This is an example of inline \\(\LaTeX\\). The following is Stokes' theorem in a
+`displaymath` environment: $$\int_{\partial \Omega} \omega = \int_{\Omega} d\omega $$
+{% katex %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
 # Introduction to Neural Networks for beginners
 (Expected prior knowledge: basics of graphs, meaning of mapping and partial derivatives)
 
