@@ -3,7 +3,7 @@
 
 > 🤩  Welcome to the Honors Academy AI Track Resource Hub! 🤩
 
-Dive into the world of  **Deep Learning** with the  **Eindhoven University of Technology's Honors Academy AI Track **. This dedicated platform is tailored to provide our ambitious students with a comprehensive collection of materials, insights, and tools to excel in their AI endeavors. Whether you're embarking on a deep learning journey or exploring the intricacies of machine learning, our curated resources are here to guide you every step of the way.
+Dive into the world of  **Deep Learning** with the  **Eindhoven University of Technology's Honors Academy AI Track**. This dedicated platform is tailored to provide our ambitious students with a comprehensive collection of materials, insights, and tools to excel in their AI endeavors. Whether you're embarking on a deep learning journey or exploring the intricacies of machine learning, our curated resources are here to guide you every step of the way.
 
 Our commitment is to ensure that you have a solid foundation to kickstart your projects. From essential basics to advanced techniques, our materials encompass a wide spectrum of AI knowledge. Moreover, our expertly crafted tips and tricks are designed to enhance your project's efficiency and effectiveness. But that's not all! Dive deeper with our additional resources that offer a broader perspective and connect theoretical knowledge with practical application.
 
