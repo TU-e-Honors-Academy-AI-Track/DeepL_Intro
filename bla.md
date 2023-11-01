@@ -2,6 +2,13 @@
 layout: default
 title: About
 ---
+<script type="text/javascript">
+if (window.MathJax) {
+  MathJax.Hub.Queue(
+    ["Typeset",MathJax.Hub]
+  );
+}
+</script>
 This is an example of inline \\(\LaTeX\\). The following is Stokes' theorem in a
 `displaymath` environment:  $$\int_{\partial \Omega} \omega = \int_{\Omega} d\omega $$ 
  $\int_{\partial \Omega} \omega = \int_{\Omega} d\omega $
