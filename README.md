@@ -1,4 +1,9 @@
 
+---
+layout: default
+title: About
+---
+
 # Introduction to Deep Learning for HA AI Track - A Curriculum
 
 > 🤩  Welcome to the Honors Academy AI Track Resource Hub! 🤩
