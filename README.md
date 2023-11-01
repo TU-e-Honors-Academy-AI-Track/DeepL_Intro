@@ -63,8 +63,6 @@ This is an overview of the important dates and deadlines for the year 2023 and 2
 |      04       |               Q&A              |      [Page](./4-Q&A/README.md)       |Answers to questions you might ask during the projects                                           |                                             Simon                                             |                       Simon                       |
 
 
-<!-- https://tu-e-honors-academy-ai-track.github.io/DeepL_Intro/2-Introduction_to_Pytorch/README.md -->
-
 ## Other Curricula
 
 Microsoft introductory machine learning courses available for free on GutHub. Check out:
