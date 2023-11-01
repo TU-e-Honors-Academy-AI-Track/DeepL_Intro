@@ -1,8 +1,4 @@
 
----
-layout: default
-title: About
----
 
 # Introduction to Deep Learning for HA AI Track - A Curriculum
 
@@ -55,22 +51,13 @@ This is an overview of the important dates and deadlines for the year 2023 and 2
 
 > Check Canvas for informaiton on whether PDP and project brief are sent directly to navas or also to coach.
 
-This is an example of inline \\(\LaTeX\\). The following is Stokes' theorem in a
-`displaymath` environment:  $$\int_{\partial \Omega} \omega = \int_{\Omega} d\omega $$ 
- $\int_{\partial \Omega} \omega = \int_{\Omega} d\omega $
 
- ```math
-\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-```
-```math
-\sqrt{\frac{1}{2}}
-```
 
 
 | Lesson Number |     Topic     | Learning objectives     |        Linked Lesson    | Author     |
 | ----------- | ---------- | ---------------------- | -------------------- | ---------- |
 |      00       |              Introduction lecture Deep Learning               |      [Slides](https://tu-e-honors-academy-ai-track.github.io/DeepL_Intro/Convolutional_Neural_Networks_lecture.pdf)       | Introduction to Deep learning                                          |                                             Simon Angelos Austin                                             |                       Simon Austin Angelos                     |
-|      01       |              Introduction to Neural Networks                |      [Page](./bla.md)       | Understand the idea of neural networks                                           |                                             Sytze                                             |                       Sytze                       |
+|      01       |              Introduction to Neural Networks                |      [Page](./1-NN/README.md)       | Understand the idea of neural networks                                           |                                             Sytze                                             |                       Sytze                       |
 |      02       |              ⚡️ Introduction to Pytorch ⚡️                |      [Page](https://tu-e-honors-academy-ai-track.github.io/DeepL_Intro/#/2-Introduction_to_Pytorch/README.md)       | Learn the basic concepts of deep learning using Pytorch                                           |                                             Simon                                             |                       Simon                       |
 |      03       |               Introduction to CNNs in Pytorch                |      [Page](./3-CNNs/README.md)       | Imlementing CNNs for computer vision in Pytorch                                           |                                             Simon                                             |                       Simon                       |
 |      04       |               Q&A              |      [Page](./4-Q&A/README.md)       |Answers to questions you might ask during the projects                                           |                                             Simon                                             |                       Simon                       |
