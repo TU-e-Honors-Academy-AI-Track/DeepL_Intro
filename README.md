@@ -4,7 +4,7 @@
 
 > 🤩  Welcome to the Honors Academy AI Track Resource Hub! 🤩
 
-Dive into the world of  **Deep Learning** with the  **Eindhoven University of Technology's Honors Academy AI Track**. This dedicated platform is tailored to provide our ambitious students with a comprehensive collection of materials, insights, and tools to excel in their AI endeavors. Whether you're embarking on a deep learning journey or exploring the intricacies of machine learning, our curated resources are here to guide you every step of the way.
+Dive into the world of  **Deep Learning** with the  **Eindhoven University of Technology's Honors Academy AI Track**. This dedicated platform is tailored to provide our ambitious students with a comprehensive collection of materials, insights, and tools to excel in their AI endeavours. Whether you're embarking on a deep learning journey or exploring the intricacies of machine learning, our curated resources are here to guide you every step of the way.
 
 Our commitment is to ensure that you have a solid foundation to kickstart your projects. From essential basics to advanced techniques, our materials encompass a wide spectrum of AI knowledge. Moreover, our expertly crafted tips and tricks are designed to enhance your project's efficiency and effectiveness. But that's not all! Dive deeper with our additional resources that offer a broader perspective and connect theoretical knowledge with practical application.
 
@@ -18,8 +18,8 @@ Embrace the future of AI with confidence. Let's embark on this transformative jo
 
 # Getting Started
 
-This repository includes pages with introductory tutiruals and materials that are crucial for the AI Track projects.
-The curriculum does not include all but necessary materials on deep leanring in Python as well as useful tips from the 2022-2023 HA AI Track members. In case you see there is more to be added, feel free to contribute and extend the materials or link your own project for reference in the topics. 
+This repository includes pages with introductory tutorials and materials that are crucial for the AI Track projects.
+The curriculum does not include all but necessary materials on deep learning in Python as well as useful tips from the 2022-2023 HA AI Track members. In case you see there is more to be added, feel free to contribute and extend the materials or link your own project for reference in the topics. 
 
 > For further study, we recommend following these [Stanford lectures](https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PLf7L7Kg8_FNxHATtLwDceyh72QQL9pvpQ&index=1) and [TU/e Master's course on computer vision](http://vca.ele.tue.nl/C418-V3-Convolutional-neural-networks-for-computer-vision.html). For Pytorch either refer to our introduction tutorial on these pages or the introduction on [Pytorch website](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
 
@@ -76,7 +76,7 @@ Microsoft introductory machine learning courses available for free on GutHub. Ch
 
 Hello there track members! 👋
 
-We would like to let you know that this project is open for contributions for you fellow track members! The contirbution can be anythig from formatting changes to makin a fancy logo for our track (see the following to get inspired). You can contact Simon or ay other of the current contributors (see above).
+We would like to let you know that this project is open for contributions for you fellow track members! The contribution can be anythig from formatting changes to making a fancy logo for our track (see the following to get inspired). You can contact Simon or any other of the current contributors (see above).
 <link rel="stylesheet" href="./styles.css">
 <!-- <img src="Logo_inspiration.png" width="512" height="512" /> -->
 <figure style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 512px;">
