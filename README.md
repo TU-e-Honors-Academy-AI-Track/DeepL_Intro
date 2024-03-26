@@ -76,7 +76,7 @@ Microsoft introductory machine learning courses available for free on GutHub. Ch
 
 Hello there track members! 👋
 
-We would like to let you know that this project is open for contributions for you fellow track members! The contribution can be anythig from formatting changes to making a fancy logo for our track (see the following to get inspired). You can contact Simon or any other of the current contributors (see above).
+We would like to let you know that this project is open for contributions for you fellow track members! The contribution can be anything from formatting changes to making a fancy logo for our track (see the following to get inspired). You can contact Simon or any other of the current contributors (see above).
 <link rel="stylesheet" href="./styles.css">
 <!-- <img src="Logo_inspiration.png" width="512" height="512" /> -->
 <figure style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 512px;">
