@@ -65,7 +65,7 @@ This is an overview of the important dates and deadlines for the year 2023 and 2
 
 ## Other Curricula
 
-Microsoft introductory machine learning courses available for free on GutHub. Check out:
+Microsoft introductory machine learning courses available for free on GitHub. Check out:
 
 - [Web Dev for Beginners](https://aka.ms/webdev-beginners)
 - [IoT for Beginners](https://aka.ms/iot-beginners)
